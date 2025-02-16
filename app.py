@@ -2,14 +2,22 @@ import streamlit as st
 from PIL import Image
 from ultralytics import YOLO
 
+
+option = st.selectbox(
+    "Select weight?",
+    ("yolo11s", "yolov8n", "medical"),
+)
 # Load the YOLO model variants
-model = YOLO("yolo11s.pt") 
+model = YOLO(option + ".pt") 
 
 st.title("YOLO Object Detection by Furqan")
 st.write("Upload an image to detect objects:")
 
+
 # File uploader for image
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
+
+
 
 if uploaded_file is not None:
     # Open image
